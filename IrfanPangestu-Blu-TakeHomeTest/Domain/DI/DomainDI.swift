@@ -5,4 +5,8 @@ extension Container {
     var songRepository: Factory<any SongRepository> {
         self { UnwiredSongRepository() }
     }
+
+    var searchSongsUseCase: Factory<any SearchSongsUseCase> {
+        self { SearchSongsUseCaseImpl(repository: self.songRepository()) }
+    }
 }
