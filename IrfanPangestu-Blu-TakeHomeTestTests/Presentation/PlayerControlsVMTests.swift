@@ -38,6 +38,24 @@ struct PlayerControlsVMTests {
         #expect(viewModel.playButtonSymbol == "play.fill")
     }
 
+    @Test("VoiceOver hears what the play button will do, and where the song is")
+    func describesControlsForVoiceOver() {
+        var state = Self.state(song: .sample(id: 1))
+        state.duration = 30
+        state.position = 12
+        useCase.state = state
+        #expect(viewModel.playButtonLabel == "Pause")
+        #expect(viewModel.positionDescription == "0:12 of 0:30")
+
+        state.isPlaying = false
+        useCase.state = state
+        #expect(viewModel.playButtonLabel == "Play")
+
+        state.isBuffering = true
+        useCase.state = state
+        #expect(viewModel.playButtonLabel == "Loading")
+    }
+
     @Test("Next turns off on the last song, previous stays on")
     func navigationAvailability() {
         var state = Self.state(song: .sample(id: 3))

@@ -42,6 +42,17 @@ final class PlayerControlsVM: ObservableObject {
         state.isPlaying ? "pause.fill" : "play.fill"
     }
 
+    var playButtonLabel: String {
+        if state.isBuffering {
+            return String(localized: "Loading")
+        }
+        return state.isPlaying ? String(localized: "Pause") : String(localized: "Play")
+    }
+
+    var positionDescription: String {
+        String(localized: "\(elapsedText) of \(durationText)")
+    }
+
     var isNextEnabled: Bool {
         state.hasNext
     }
