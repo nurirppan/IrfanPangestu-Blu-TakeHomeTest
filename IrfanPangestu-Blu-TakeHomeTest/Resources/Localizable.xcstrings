@@ -1,0 +1,259 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ of %@" : {
+      "comment" : "VoiceOver value of the slider, such as 0:12 of 0:30.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ dari %2$@"
+          }
+        }
+      }
+    },
+    "Loading" : {
+      "comment" : "VoiceOver label of the play button while the preview buffers.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memuat"
+          }
+        }
+      }
+    },
+    "Music" : {
+      "comment" : "Title of the song list.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Musik"
+          }
+        }
+      }
+    },
+    "Next song" : {
+      "comment" : "VoiceOver label of the next button.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagu berikutnya"
+          }
+        }
+      }
+    },
+    "No internet connection" : {
+      "comment" : "Error message.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada koneksi internet"
+          }
+        }
+      }
+    },
+    "No songs found for “%@”" : {
+      "comment" : "Shown when a search finds nothing; %@ is the search term.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada lagu untuk “%@”"
+          }
+        }
+      }
+    },
+    "Now playing" : {
+      "comment" : "VoiceOver value of the row whose song plays.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sedang diputar"
+          }
+        }
+      }
+    },
+    "Pause" : {
+      "comment" : "VoiceOver label of the play button while a song plays.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeda"
+          }
+        }
+      }
+    },
+    "Paused" : {
+      "comment" : "VoiceOver value of the row whose song is paused.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dijeda"
+          }
+        }
+      }
+    },
+    "Play" : {
+      "comment" : "VoiceOver label of the play button while a song is paused.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Putar"
+          }
+        }
+      }
+    },
+    "Position" : {
+      "comment" : "VoiceOver label of the slider.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posisi"
+          }
+        }
+      }
+    },
+    "Previous song" : {
+      "comment" : "VoiceOver label of the previous button.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagu sebelumnya"
+          }
+        }
+      }
+    },
+    "Retry" : {
+      "comment" : "Button that runs a failed search again.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "Search an artist to start" : {
+      "comment" : "Shown before the first search.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari artis untuk memulai"
+          }
+        }
+      }
+    },
+    "Search artist" : {
+      "comment" : "Placeholder of the search field.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari artis"
+          }
+        }
+      }
+    },
+    "Server error (code %lld)" : {
+      "comment" : "Error message; %lld is the HTTP status code.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kesalahan server (kode %lld)"
+          }
+        }
+      }
+    },
+    "Something went wrong" : {
+      "comment" : "Error message for an unknown failure.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terjadi kesalahan"
+          }
+        }
+      }
+    },
+    "The connection is slow, try again" : {
+      "comment" : "Error message for a timeout.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi lambat, coba lagi"
+          }
+        }
+      }
+    },
+    "This song can't be played" : {
+      "comment" : "Error message for a preview that fails to load.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagu ini tidak dapat diputar"
+          }
+        }
+      }
+    },
+    "Unexpected data from server" : {
+      "comment" : "Error message for a response that can't be read.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data dari server tidak dapat dibaca"
+          }
+        }
+      }
+    },
+    "Unknown album" : {
+      "comment" : "Shown when iTunes leaves out a song's album.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Album tidak diketahui"
+          }
+        }
+      }
+    },
+    "Unknown artist" : {
+      "comment" : "Shown when iTunes leaves out a song's artist.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Artis tidak diketahui"
+          }
+        }
+      }
+    },
+    "Unknown title" : {
+      "comment" : "Shown when iTunes leaves out a song's title.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Judul tidak diketahui"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
