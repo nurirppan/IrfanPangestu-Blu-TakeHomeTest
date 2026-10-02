@@ -14,9 +14,11 @@ final class PlayerRepositoryImpl: PlayerRepository {
 
     init() {
         observePlayer()
+        observeAudioSession()
     }
 
     func play(url: URL) {
+        activateAudioSession()
         let item = AVPlayerItem(url: url)
         observe(item)
         player.replaceCurrentItem(with: item)
@@ -28,6 +30,7 @@ final class PlayerRepositoryImpl: PlayerRepository {
     }
 
     func resume() {
+        activateAudioSession()
         player.play()
     }
 
@@ -84,6 +87,46 @@ final class PlayerRepositoryImpl: PlayerRepository {
         }
         let duration = item.duration.seconds
         onEvent?(.progress(position: max(seconds, 0), duration: duration.isFinite ? duration : 0))
+    }
+
+    /// `.playback` keeps the sound on when the silent switch is on.
+    private func activateAudioSession() {
+        let session = AVAudioSession.sharedInstance()
+        try? session.setCategory(.playback, mode: .default)
+        try? session.setActive(true)
+    }
+
+    private func observeAudioSession() {
+        NotificationCenter.default.publisher(for: AVAudioSession.interruptionNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notification in
+                self?.handleInterruption(notification)
+            }
+            .store(in: &playerCancellables)
+        NotificationCenter.default.publisher(for: AVAudioSession.routeChangeNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notification in
+                self?.handleRouteChange(notification)
+            }
+            .store(in: &playerCancellables)
+    }
+
+    /// A phone call took the audio; stay paused afterwards instead of resuming by surprise.
+    private func handleInterruption(_ notification: Notification) {
+        guard let rawType = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt,
+              AVAudioSession.InterruptionType(rawValue: rawType) == .began else {
+            return
+        }
+        player.pause()
+    }
+
+    /// Unplugged headphones would otherwise move the sound to the speaker.
+    private func handleRouteChange(_ notification: Notification) {
+        guard let rawReason = notification.userInfo?[AVAudioSessionRouteChangeReasonKey] as? UInt,
+              AVAudioSession.RouteChangeReason(rawValue: rawReason) == .oldDeviceUnavailable else {
+            return
+        }
+        player.pause()
     }
 
     private func report(_ status: AVPlayer.TimeControlStatus) {
