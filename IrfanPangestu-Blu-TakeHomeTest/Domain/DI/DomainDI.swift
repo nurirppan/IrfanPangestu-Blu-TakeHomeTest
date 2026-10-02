@@ -15,4 +15,9 @@ extension Container {
     var playerRepository: Factory<any PlayerRepository> {
         self { MainActor.assumeIsolated { UnwiredPlayerRepository() } }.singleton
     }
+
+    /// `.singleton` for the same reason: one queue and one player, shared by every screen.
+    var musicPlayerUseCase: Factory<any MusicPlayerUseCase> {
+        self { MainActor.assumeIsolated { MusicPlayerUseCaseImpl(repository: self.playerRepository()) } }.singleton
+    }
 }
