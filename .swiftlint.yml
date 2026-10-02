@@ -21,3 +21,27 @@ function_parameter_count:
 identifier_name:
   excluded:
     - id
+
+# One target, so these keep the layers apart; match_kinds leaves comments and strings out.
+custom_rules:
+  domain_depends_on_nothing:
+    name: "Domain depends on nothing"
+    included: ".*/IrfanPangestu-Blu-TakeHomeTest/Domain/.*\\.swift$"
+    regex: "^import (UIKit|AVFoundation|MediaPlayer)\\b|\\b(\\w+RepositoryImpl|Itunes\\w+|URLSessionItunesAPIService|ErrorMapperType|HTTPStatusError|\\w+VM|\\w+ViewController|SongTableViewCell|ImageLoader|AppErrorPresentationModel|ErrorHandling|TimeFormatterType|SongListStateType)\\b"
+    match_kinds: [keyword, identifier, typeidentifier]
+    message: "Domain holds models, contracts and use cases only; UI, audio and the iTunes client live in Presentation and Data."
+    severity: error
+  presentation_never_reaches_data:
+    name: "Presentation never reaches Data"
+    included: ".*/IrfanPangestu-Blu-TakeHomeTest/Presentation/.*\\.swift$"
+    regex: "^import (AVFoundation|MediaPlayer)\\b|\\b(\\w+RepositoryImpl|Itunes\\w+|URLSessionItunesAPIService|ErrorMapperType|HTTPStatusError)\\b"
+    match_kinds: [keyword, identifier, typeidentifier]
+    message: "Presentation talks to use cases; the iTunes client, AVPlayer and the lock screen belong in Data."
+    severity: error
+  data_never_reaches_presentation:
+    name: "Data never reaches Presentation"
+    included: ".*/IrfanPangestu-Blu-TakeHomeTest/Data/.*\\.swift$"
+    regex: "\\b(\\w+VM|\\w+ViewController|SongTableViewCell|ImageLoader|AppErrorPresentationModel|ErrorHandling|TimeFormatterType|SongListStateType)\\b"
+    match_kinds: [identifier, typeidentifier]
+    message: "Data maps and fetches; what the screens show is decided in Presentation."
+    severity: error
