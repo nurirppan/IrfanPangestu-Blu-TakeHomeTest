@@ -9,4 +9,10 @@ extension Container {
     var searchSongsUseCase: Factory<any SearchSongsUseCase> {
         self { SearchSongsUseCaseImpl(repository: self.songRepository()) }
     }
+
+    /// `.singleton`: every screen must drive the same player. Player types live on the main actor and only
+    /// main-actor view models resolve them, so the factory builds them there.
+    var playerRepository: Factory<any PlayerRepository> {
+        self { MainActor.assumeIsolated { UnwiredPlayerRepository() } }.singleton
+    }
 }
