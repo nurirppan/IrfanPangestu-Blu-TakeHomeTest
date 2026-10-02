@@ -3,3 +3,8 @@
 
 Halo, Saya Nur Irfan Pangestu, Senior iOS Engineer. Kalau mau kenal lebih jauh, mampir aja ke portofolio saya di [irfanpangestu.dev](https://irfanpangestu.dev/).
 
+## Screenshots
+
+| Layar awal | Lagu diputar | Hasil kosong | Bahasa Indonesia |
+| :---: | :---: | :---: | :---: |
+| <img src="docs/screenshots/start.png" width="180" alt="Layar awal dengan kolom pencarian artis"> | <img src="docs/screenshots/playing.png" width="180" alt="Hasil pencarian Coldplay dengan lagu Yellow sedang diputar"> | <img src="docs/screenshots/no-results.png" width="180" alt="Pencarian yang tidak menemukan lagu"> | <img src="docs/screenshots/indonesian.png" width="180" alt="Layar awal dalam Bahasa Indonesia"> |
