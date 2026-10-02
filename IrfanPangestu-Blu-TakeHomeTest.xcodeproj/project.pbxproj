@@ -25,22 +25,9 @@
 		77E18C66306F2F63009BFE81 /* IrfanPangestu-Blu-TakeHomeTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IrfanPangestu-Blu-TakeHomeTestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		77E18C78306F2F63009BFE81 /* Exceptions for "IrfanPangestu-Blu-TakeHomeTest" folder in "IrfanPangestu-Blu-TakeHomeTest" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 77E18C4F306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		77E18C52306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				77E18C78306F2F63009BFE81 /* Exceptions for "IrfanPangestu-Blu-TakeHomeTest" folder in "IrfanPangestu-Blu-TakeHomeTest" target */,
-			);
 			path = "IrfanPangestu-Blu-TakeHomeTest";
 			sourceTree = "<group>";
 		};
@@ -231,10 +218,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HB29KH82GH;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "IrfanPangestu-Blu-TakeHomeTest/Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -260,10 +246,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HB29KH82GH;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "IrfanPangestu-Blu-TakeHomeTest/Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
