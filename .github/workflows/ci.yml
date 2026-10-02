@@ -75,8 +75,23 @@ jobs:
             -project IrfanPangestu-Blu-TakeHomeTest.xcodeproj \
             -scheme IrfanPangestu-Blu-TakeHomeTest \
             -destination "id=${{ steps.simulator.outputs.udid }}" \
+            -enableCodeCoverage YES \
+            -resultBundlePath "$RUNNER_TEMP/UnitTests.xcresult" \
             CODE_SIGNING_ALLOWED=NO \
             2>&1 | tee -a "$RUNNER_TEMP/xcodebuild.log" | xcbeautify --renderer github-actions
+
+      # One target, so the coverage is summed per layer folder.
+      - name: Coverage summary
+        run: |
+          xcrun xccov view --report --json "$RUNNER_TEMP/UnitTests.xcresult" | jq -r '
+            [.targets[] | select(.name == "IrfanPangestu-Blu-TakeHomeTest.app") | .files[]
+              | (.path | capture("/IrfanPangestu-Blu-TakeHomeTest/(?<layer>Domain|Data|Presentation)/")?) as $match
+              | select($match) | {layer: $match.layer, covered: .coveredLines, total: .executableLines}]
+            | group_by(.layer)
+            | "### Unit test coverage", "", "| Layer | Lines covered |", "|---|---|",
+              (.[] | (map(.covered) | add) as $covered | (map(.total) | add) as $total
+                | "| \(.[0].layer) | \($covered * 1000 / $total | round / 10)% (\($covered)/\($total)) |")
+          ' >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload build log
         if: failure()
