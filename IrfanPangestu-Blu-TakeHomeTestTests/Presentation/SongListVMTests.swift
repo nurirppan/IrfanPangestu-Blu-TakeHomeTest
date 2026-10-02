@@ -87,6 +87,34 @@ struct SongListVMTests {
         #expect(player.playedIndex == 1)
     }
 
+    @Test("Marks the song that's playing by its ID")
+    func marksPlayingSong() {
+        let viewModel = makeViewModel(query: "", results: .success([]))
+        #expect(viewModel.playingSongID == nil)
+
+        var state = PlaybackStateModel.idle
+        state.currentSong = .sample(id: 7)
+        player.state = state
+
+        #expect(viewModel.playingSongID == 7)
+    }
+
+    @Test("Knows whether the marked song plays or is paused, so only a playing mark moves")
+    func followsPlayAndPause() {
+        let viewModel = makeViewModel(query: "", results: .success([]))
+        var state = PlaybackStateModel.idle
+        state.currentSong = .sample(id: 7)
+        state.isPlaying = true
+        player.state = state
+        #expect(viewModel.isPlaying)
+
+        state.isPlaying = false
+        player.state = state
+
+        #expect(!viewModel.isPlaying)
+        #expect(viewModel.playingSongID == 7)
+    }
+
     private func makeViewModel(query: String, results: Result<[SongModel], AppErrorType>...) -> SongListVM {
         let searchUseCase = StubSearchSongsUseCase(results: results)
         let viewModel = SongListVM(searchUseCase: searchUseCase, playerUseCase: player)
