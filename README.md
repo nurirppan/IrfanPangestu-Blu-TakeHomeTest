@@ -23,6 +23,14 @@ Diawi dan Install On Air hanya dapat dipakai di iPhone yang UDID-nya sudah terda
 | :---: | :---: | :---: | :---: |
 | <img src="docs/screenshots/start.png" width="180" alt="Layar awal dengan kolom pencarian artis"> | <img src="docs/screenshots/playing.png" width="180" alt="Hasil pencarian Coldplay dengan lagu Yellow sedang diputar"> | <img src="docs/screenshots/no-results.png" width="180" alt="Pencarian yang tidak menemukan lagu"> | <img src="docs/screenshots/indonesian.png" width="180" alt="Layar awal dalam Bahasa Indonesia"> |
 
+## Demo
+
+<img src="docs/screenshots/record.gif" alt="Rekaman layar aplikasi: mencari Coldplay, memutar dan mengganti lagu, lalu menggulir hasil pencarian">
+
+Versi video: [record.mp4](docs/screenshots/record.mp4)
+
+Suara musik tidak ikut terekam karena keterbatasan sistem perekaman layar. Untuk mendengar musiknya, kamu dapat mengujinya secara langsung dengan menggunakan device masing masing.
+
 ## Code Coverage
 
 <img src="docs/screenshots/coverage.png" alt="Laporan code coverage unit test di Xcode, target app 78,7%">
