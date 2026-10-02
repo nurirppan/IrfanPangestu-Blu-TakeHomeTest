@@ -26,7 +26,7 @@ final class MusicPlayerUseCaseImpl: MusicPlayerUseCase {
         }
     }
 
-    /// Tapping the song that's already playing pauses or resumes it.
+    /// Tapping the song that's already playing pauses or resumes it; it restarts only after a failure.
     func play(songs: [SongModel], startAt index: Int) {
         let isCurrentSong = songs.indices.contains(index) && songs[index] == state.currentSong
         guard let song = queue.select(songs: songs, at: index) else {
@@ -43,11 +43,14 @@ final class MusicPlayerUseCaseImpl: MusicPlayerUseCase {
         togglePlayPause()
     }
 
+    /// A song that failed to load can't resume, so play after a failure loads it again.
     func togglePlayPause() {
-        guard state.currentSong != nil else {
+        guard let song = state.currentSong else {
             return
         }
-        if state.isPlaying {
+        if state.error != nil {
+            start(song)
+        } else if state.isPlaying {
             repository.pause()
             update {
                 $0.isPlaying = false
@@ -108,8 +111,12 @@ final class MusicPlayerUseCaseImpl: MusicPlayerUseCase {
             }
         case .finished:
             playNextOrStop()
-        case .failed:
-            break
+        case .failed(let error):
+            update {
+                $0.error = error
+                $0.isPlaying = false
+                $0.isBuffering = false
+            }
         }
     }
 

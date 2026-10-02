@@ -122,6 +122,52 @@ struct MusicPlayerUseCaseTests {
         #expect(repository.seekPositions == [0])
     }
 
+    @Test("A playback failure shows up in the state")
+    func reportsPlaybackFailure() {
+        useCase.play(songs: songs, startAt: 0)
+
+        repository.send(.failed(.playbackFailed))
+
+        #expect(useCase.state.error == .playbackFailed)
+        #expect(!useCase.state.isPlaying)
+        #expect(!useCase.state.isBuffering)
+    }
+
+    @Test("Starting another song clears the failure")
+    func clearsFailureOnNextSong() {
+        useCase.play(songs: songs, startAt: 0)
+        repository.send(.failed(.playbackFailed))
+
+        useCase.next()
+
+        #expect(useCase.state.error == nil)
+        #expect(useCase.state.currentSong == songs[1])
+    }
+
+    @Test("Play after a failure loads the song again, since a failed item can't resume")
+    func retriesFailedSong() {
+        useCase.play(songs: songs, startAt: 0)
+        repository.send(.failed(.playbackFailed))
+
+        useCase.togglePlayPause()
+
+        #expect(repository.playedURLs == [songs[0].previewURL, songs[0].previewURL])
+        #expect(repository.resumeCount == 0)
+        #expect(useCase.state.error == nil)
+        #expect(useCase.state.isPlaying)
+    }
+
+    @Test("Tapping a song that failed loads it again")
+    func retriesFailedSongFromTheList() {
+        useCase.play(songs: songs, startAt: 1)
+        repository.send(.failed(.playbackFailed))
+
+        useCase.play(songs: songs, startAt: 1)
+
+        #expect(repository.playedURLs == [songs[1].previewURL, songs[1].previewURL])
+        #expect(useCase.state.error == nil)
+    }
+
     @Test("Tapping the song that's playing pauses it instead of restarting")
     func togglesCurrentSong() {
         useCase.play(songs: songs, startAt: 1)
