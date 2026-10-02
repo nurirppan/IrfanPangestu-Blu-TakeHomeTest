@@ -1,4 +1,5 @@
 import MediaPlayer
+import UIKit
 
 /// The lock screen, Control Center and headphone buttons through MediaPlayer. Like AVPlayer it only means something
 /// on a device, so the mapping it relies on is unit-tested and the rest is checked there.
@@ -6,9 +7,15 @@ import MediaPlayer
 final class NowPlayingRepositoryImpl: NowPlayingRepository {
     var onCommand: ((RemoteCommandType) -> Void)?
 
+    private let session: URLSession
     private var shownState = PlaybackStateModel.idle
+    private var artworkSongID: Int?
+    private var artwork: MPMediaItemArtwork?
+    private var artworkTask: Task<Void, Never>?
 
-    init() {
+    /// The app chooses the session for the artwork, as it does for the song search.
+    init(session: URLSession) {
+        self.session = session
         registerCommands()
     }
 
@@ -17,6 +24,10 @@ final class NowPlayingRepositoryImpl: NowPlayingRepository {
             return
         }
         shownState = state
+        // Before publishing, so a new song never goes out with the previous song's artwork.
+        if let song = state.currentSong {
+            loadArtwork(for: song)
+        }
         publish()
     }
 
@@ -28,11 +39,11 @@ final class NowPlayingRepositoryImpl: NowPlayingRepository {
     }
 
     /// What the lock screen shows; `nil` clears it.
-    static func info(for state: PlaybackStateModel) -> [String: Any]? {
+    static func info(for state: PlaybackStateModel, artwork: MPMediaItemArtwork?) -> [String: Any]? {
         guard let song = state.currentSong else {
             return nil
         }
-        return [
+        var info: [String: Any] = [
             MPMediaItemPropertyTitle: song.title,
             MPMediaItemPropertyArtist: song.artist,
             MPMediaItemPropertyAlbumTitle: song.album,
@@ -40,6 +51,13 @@ final class NowPlayingRepositoryImpl: NowPlayingRepository {
             MPNowPlayingInfoPropertyElapsedPlaybackTime: state.position,
             MPNowPlayingInfoPropertyPlaybackRate: state.isPlaying ? 1.0 : 0.0
         ]
+        info[MPMediaItemPropertyArtwork] = artwork
+        return info
+    }
+
+    /// The list loads 200 px artwork; the lock screen shows it far larger.
+    static func lockScreenArtworkURL(from url: URL) -> URL? {
+        URL(string: url.absoluteString.replacingOccurrences(of: "200x200bb", with: "600x600bb"))
     }
 
     /// Without a song on the lock screen there is nothing for a button to act on.
@@ -56,7 +74,7 @@ final class NowPlayingRepositoryImpl: NowPlayingRepository {
         commands.nextTrackCommand.isEnabled = shownState.hasNext
         commands.previousTrackCommand.isEnabled = shownState.currentSong != nil
         commands.changePlaybackPositionCommand.isEnabled = shownState.duration > 0
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = Self.info(for: shownState)
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = Self.info(for: shownState, artwork: artwork)
     }
 
     /// MediaPlayer calls these on the main thread, which `assumeIsolated` checks.
@@ -80,5 +98,35 @@ final class NowPlayingRepositoryImpl: NowPlayingRepository {
             }
             return MainActor.assumeIsolated { self?.send(.seek(position: position)) ?? .commandFailed }
         }
+    }
+
+    /// Fetched once per song; the info goes out again when the image arrives.
+    private func loadArtwork(for song: SongModel) {
+        guard song.id != artworkSongID else {
+            return
+        }
+        artworkSongID = song.id
+        artwork = nil
+        artworkTask?.cancel()
+        guard let url = song.artworkURL.flatMap(Self.lockScreenArtworkURL) else {
+            return
+        }
+        artworkTask = Task { [weak self, session] in
+            guard let response = try? await session.data(from: url), let image = UIImage(data: response.0),
+                  !Task.isCancelled else {
+                return
+            }
+            self?.applyArtwork(image, for: song.id)
+        }
+    }
+
+    /// An image that arrives after another song took over is dropped.
+    func applyArtwork(_ image: UIImage, for songID: Int) {
+        guard songID == artworkSongID else {
+            return
+        }
+        // MediaPlayer asks for the image off the main thread, so the handler must not be main-actor isolated.
+        artwork = MPMediaItemArtwork(boundsSize: image.size) { @Sendable _ in image }
+        publish()
     }
 }
