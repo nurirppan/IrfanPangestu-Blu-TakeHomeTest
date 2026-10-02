@@ -232,7 +232,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.IrfanPangestu-Blu-TakeHomeTest";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.irfanpangestu-blu-takehometest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -263,7 +263,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.IrfanPangestu-Blu-TakeHomeTest";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.irfanpangestu-blu-takehometest";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -405,7 +405,7 @@
 				DEVELOPMENT_TEAM = HB29KH82GH;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.IrfanPangestu-Blu-TakeHomeTestTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.irfanpangestu-blu-takehometesttests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -426,7 +426,7 @@
 				DEVELOPMENT_TEAM = HB29KH82GH;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.IrfanPangestu-Blu-TakeHomeTestTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.irfanpangestu-blu-takehometesttests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
