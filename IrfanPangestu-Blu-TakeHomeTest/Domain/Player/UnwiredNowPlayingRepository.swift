@@ -12,5 +12,5 @@ final class UnwiredNowPlayingRepository: NowPlayingRepository {
 
     func show(_ state: PlaybackStateModel) {}
 
-    private static let log = Logger(subsystem: "com.irfanpangestu-blu-takehometest", category: "DI")
+    private static let log = Logger(subsystem: "com.irfanpangestu.takehometest", category: "DI")
 }
