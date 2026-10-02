@@ -6,5 +6,5 @@ enum AppErrorType: Error, Equatable, Sendable {
     case invalidData
     case playbackFailed
     case localError(message: String)
-    case unknown
+    case unknown 
 }
