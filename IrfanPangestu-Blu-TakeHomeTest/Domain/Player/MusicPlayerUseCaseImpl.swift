@@ -26,11 +26,21 @@ final class MusicPlayerUseCaseImpl: MusicPlayerUseCase {
         }
     }
 
+    /// Tapping the song that's already playing pauses or resumes it.
     func play(songs: [SongModel], startAt index: Int) {
+        let isCurrentSong = songs.indices.contains(index) && songs[index] == state.currentSong
         guard let song = queue.select(songs: songs, at: index) else {
             return
         }
-        start(song)
+        guard isCurrentSong else {
+            start(song)
+            return
+        }
+        update {
+            $0.hasNext = queue.hasNext
+            $0.hasPrevious = queue.hasPrevious
+        }
+        togglePlayPause()
     }
 
     func togglePlayPause() {

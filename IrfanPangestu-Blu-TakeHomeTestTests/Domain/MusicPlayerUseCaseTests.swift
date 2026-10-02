@@ -98,6 +98,27 @@ struct MusicPlayerUseCaseTests {
         #expect(!useCase.state.isBuffering)
     }
 
+    @Test("Tapping the song that's playing pauses it instead of restarting")
+    func togglesCurrentSong() {
+        useCase.play(songs: songs, startAt: 1)
+
+        useCase.play(songs: songs, startAt: 1)
+
+        #expect(repository.playedURLs.count == 1)
+        #expect(repository.pauseCount == 1)
+        #expect(!useCase.state.isPlaying)
+    }
+
+    @Test("Tapping it in a new list makes that list the queue")
+    func adoptsNewListForCurrentSong() {
+        useCase.play(songs: songs, startAt: 2)
+
+        useCase.play(songs: [songs[2], .sample(id: 4)], startAt: 0)
+        useCase.next()
+
+        #expect(useCase.state.currentSong == .sample(id: 4))
+    }
+
     @Test("Every subscriber sees the same state")
     func publishesToEverySubscriber() {
         var first: PlaybackStateModel?
