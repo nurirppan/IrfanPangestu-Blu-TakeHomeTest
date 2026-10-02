@@ -6,5 +6,7 @@ extension Container: @retroactive AutoRegistering {
     /// `nonisolated` because FactoryKit calls it from its own resolution code, before the first dependency is built.
     public nonisolated func autoRegister() {
         songRepository.register { SongRepositoryImpl(session: .shared) }
+        // Built on the main actor, the same way DomainDI builds the defaults.
+        playerRepository.register { MainActor.assumeIsolated { PlayerRepositoryImpl() } }
     }
 }
