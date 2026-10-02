@@ -3,6 +3,10 @@
 
 Halo, Saya Nur Irfan Pangestu, Senior iOS Engineer. Kalau mau kenal lebih jauh, mampir aja ke portofolio saya di [irfanpangestu.dev](https://irfanpangestu.dev/).
 
+## TestFlight
+
+Take home test dapat di install melalui link berikut https://testflight.apple.com/join/Y6azsvpC
+
 ## Screenshots
 
 | Layar awal | Lagu diputar | Hasil kosong | Bahasa Indonesia |
