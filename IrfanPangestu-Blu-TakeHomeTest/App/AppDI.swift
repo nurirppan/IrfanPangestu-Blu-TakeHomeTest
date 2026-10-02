@@ -8,5 +8,6 @@ extension Container: @retroactive AutoRegistering {
         songRepository.register { SongRepositoryImpl(session: .shared) }
         // Built on the main actor, the same way DomainDI builds the defaults.
         playerRepository.register { MainActor.assumeIsolated { PlayerRepositoryImpl() } }
+        nowPlayingRepository.register { MainActor.assumeIsolated { NowPlayingRepositoryImpl(session: .shared) } }
     }
 }

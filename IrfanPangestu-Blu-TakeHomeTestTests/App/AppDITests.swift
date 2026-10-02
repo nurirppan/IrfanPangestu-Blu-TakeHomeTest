@@ -9,10 +9,12 @@ struct AppDITests {
     func wiresTheRealRepositories() {
         #expect(Container.shared.songRepository() is SongRepositoryImpl)
         #expect(Container.shared.playerRepository() is PlayerRepositoryImpl)
+        #expect(Container.shared.nowPlayingRepository() is NowPlayingRepositoryImpl)
     }
 
-    @Test("Every screen gets the same player")
+    @Test("Every screen gets the same player and the same lock screen")
     func sharesOnePlayer() {
         #expect(Container.shared.musicPlayerUseCase() === Container.shared.musicPlayerUseCase())
+        #expect(Container.shared.nowPlayingRepository() === Container.shared.nowPlayingRepository())
     }
 }
