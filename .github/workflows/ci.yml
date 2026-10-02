@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Lint, build and test
+    runs-on: macos-26
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Select newest Xcode
+        run: |
+          XCODE_PATH=$(ls -d /Applications/Xcode_2[6-9]*.app 2>/dev/null | sort -V | tail -n 1)
+          sudo xcode-select -s "${XCODE_PATH:-/Applications/Xcode.app}"
+          xcodebuild -version
+
+      - name: Install SwiftLint
+        run: |
+          curl -sSL -o "$RUNNER_TEMP/swiftlint.zip" https://github.com/realm/SwiftLint/releases/download/0.65.0/portable_swiftlint.zip
+          unzip -o -q "$RUNNER_TEMP/swiftlint.zip" -d "$RUNNER_TEMP/swiftlint"
+          echo "$RUNNER_TEMP/swiftlint" >> "$GITHUB_PATH"
+
+      - name: Lint
+        run: swiftlint lint --strict --reporter github-actions-logging
+
+      # A String Catalog entry without its Bahasa Indonesia translation would show in English.
+      - name: Check translations
+        run: |
+          catalog=IrfanPangestu-Blu-TakeHomeTest/Resources/Localizable.xcstrings
+          jq -e '[.strings[] | select(.localizations.id.stringUnit.state != "translated")] | length == 0' "$catalog" > /dev/null \
+            || { echo "::error file=$catalog::A string has no Bahasa Indonesia translation"; exit 1; }
+
+      - name: Pick an iPhone simulator
+        id: simulator
+        run: |
+          UDID=$(xcrun simctl list devices available -j | python3 -c '
+          import json, sys
+          devices = json.load(sys.stdin)["devices"]
+          for runtime in sorted((r for r in devices if "iOS" in r), reverse=True):
+              for device in devices[runtime]:
+                  if device["name"].startswith("iPhone"):
+                      print(device["udid"]); sys.exit(0)
+          sys.exit("no iPhone simulator")
+          ')
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+
+      - name: Build app
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project IrfanPangestu-Blu-TakeHomeTest.xcodeproj \
+            -scheme IrfanPangestu-Blu-TakeHomeTest \
+            -destination "id=${{ steps.simulator.outputs.udid }}" \
+            CODE_SIGNING_ALLOWED=NO \
+            2>&1 | tee "$RUNNER_TEMP/xcodebuild.log" | xcbeautify --renderer github-actions
+
+      # The scheme pins English for the tests, so assertions never follow the runner's language.
+      - name: Unit tests
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project IrfanPangestu-Blu-TakeHomeTest.xcodeproj \
+            -scheme IrfanPangestu-Blu-TakeHomeTest \
+            -destination "id=${{ steps.simulator.outputs.udid }}" \
+            CODE_SIGNING_ALLOWED=NO \
+            2>&1 | tee -a "$RUNNER_TEMP/xcodebuild.log" | xcbeautify --renderer github-actions
+
+      - name: Upload build log
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: xcodebuild-log
+          path: ${{ runner.temp }}/xcodebuild.log
