@@ -9,6 +9,7 @@ final class PlayerControlsVM: ObservableObject {
     @Published var sliderPosition: TimeInterval = 0
 
     private let playerUseCase: any MusicPlayerUseCase
+    private var isScrubbing = false
     private var cancellables = Set<AnyCancellable>()
 
     init(playerUseCase: any MusicPlayerUseCase = Container.shared.musicPlayerUseCase()) {
@@ -83,8 +84,24 @@ final class PlayerControlsVM: ObservableObject {
         playerUseCase.previous()
     }
 
+    /// `true` when a drag starts, `false` when it ends. Seeking only on release keeps the audio from stuttering.
+    func scrubbingChanged(_ isEditing: Bool) {
+        isScrubbing = isEditing
+        if !isEditing {
+            playerUseCase.seek(to: sliderPosition)
+        }
+    }
+
+    /// A move without a drag, such as a VoiceOver swipe, has no release to wait for, so it seeks at once.
+    func seek(to position: TimeInterval) {
+        sliderPosition = position
+        playerUseCase.seek(to: position)
+    }
+
     private func apply(_ newState: PlaybackStateModel) {
         state = newState
-        sliderPosition = newState.position
+        if !isScrubbing {
+            sliderPosition = newState.position
+        }
     }
 }

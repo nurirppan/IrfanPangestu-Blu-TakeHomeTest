@@ -83,6 +83,35 @@ struct PlayerControlsVMTests {
         #expect(useCase.commands == ["previous", "toggle", "next"])
     }
 
+    @Test("A drag holds the slider still and seeks once, on release")
+    func seeksOnRelease() {
+        var state = Self.state(song: .sample(id: 1))
+        state.duration = 30
+        useCase.state = state
+
+        viewModel.scrubbingChanged(true)
+        viewModel.sliderPosition = 20
+        state.position = 5
+        useCase.state = state
+        #expect(viewModel.sliderPosition == 20)
+        #expect(useCase.commands.isEmpty)
+
+        viewModel.scrubbingChanged(false)
+        #expect(useCase.commands == ["seek 20"])
+    }
+
+    @Test("A move without a drag, like a VoiceOver swipe, seeks at once")
+    func seeksWithoutDrag() {
+        var state = Self.state(song: .sample(id: 1))
+        state.duration = 30
+        useCase.state = state
+
+        viewModel.seek(to: 7)
+
+        #expect(viewModel.sliderPosition == 7)
+        #expect(useCase.commands == ["seek 7"])
+    }
+
     private static func state(song: SongModel) -> PlaybackStateModel {
         var state = PlaybackStateModel.idle
         state.currentSong = song
