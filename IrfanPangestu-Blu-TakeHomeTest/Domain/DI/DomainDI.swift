@@ -26,4 +26,13 @@ extension Container {
     var nowPlayingRepository: Factory<any NowPlayingRepository> {
         self { MainActor.assumeIsolated { UnwiredNowPlayingRepository() } }.singleton
     }
+
+    /// `.singleton`: one lock screen following the one shared player.
+    var nowPlayingUseCase: Factory<any NowPlayingUseCase> {
+        self {
+            MainActor.assumeIsolated {
+                NowPlayingUseCaseImpl(playerUseCase: self.musicPlayerUseCase(), repository: self.nowPlayingRepository())
+            }
+        }.singleton
+    }
 }
