@@ -26,4 +26,21 @@ struct NibLoadingTests {
         cell.configure(with: .sample(id: 2), isCurrent: false, isPlaying: true)
         #expect(cell.accessibilityValue == nil)
     }
+
+    @Test("The song list loads its XIB and starts on the idle message")
+    func songListLoads() {
+        let viewModel = SongListVM(
+            searchUseCase: StubSearchSongsUseCase(results: [.success([])]),
+            playerUseCase: FakeMusicPlayerUseCase()
+        )
+        let controller = SongListViewController(viewModel: viewModel)
+
+        controller.loadViewIfNeeded()
+
+        let texts = controller.view.descendants(of: UILabel.self).compactMap(\.text)
+        #expect(texts.contains("Search an artist to start"))
+        #expect(controller.navigationItem.searchController != nil)
+        #expect(controller.navigationItem.preferredSearchBarPlacement == .stacked)
+        #expect(!controller.view.descendants(of: UITableView.self).isEmpty)
+    }
 }

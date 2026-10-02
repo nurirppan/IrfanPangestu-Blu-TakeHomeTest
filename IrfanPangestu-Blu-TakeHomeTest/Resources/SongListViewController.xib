@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongListViewController" customModule="IrfanPangestu_Blu_TakeHomeTest" customModuleProvider="target">
+            <connections>
+                <outlet property="loadingIndicator" destination="Lod-Ai-001" id="O01-Sl-001"/>
+                <outlet property="retryButton" destination="Rty-Bt-001" id="O02-Sl-001"/>
+                <outlet property="statusImageView" destination="Sts-Iv-001" id="O03-Sl-001"/>
+                <outlet property="statusLabel" destination="Sts-Lb-001" id="O04-Sl-001"/>
+                <outlet property="statusStackView" destination="Sts-Sv-001" id="O05-Sl-001"/>
+                <outlet property="tableView" destination="Tbl-Vw-001" id="O06-Sl-001"/>
+                <outlet property="view" destination="Roo-Vw-001" id="O07-Sl-001"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Roo-Vw-001">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="82" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Tbl-Vw-001">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </tableView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Sts-Sv-001">
+                    <rect key="frame" x="40" y="379" width="313" height="119"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Sts-Iv-001">
+                            <rect key="frame" x="136.66666666666666" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="C01-Sl-001"/>
+                                <constraint firstAttribute="height" constant="40" id="C02-Sl-001"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search an artist to start" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sts-Lb-001">
+                            <rect key="frame" x="62" y="52" width="189" height="20.333333333333332"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rty-Bt-001">
+                            <rect key="frame" x="120" y="84.333333333333314" width="73" height="35"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Retry"/>
+                            <connections>
+                                <action selector="retryTapped" destination="-1" eventType="touchUpInside" id="A01-Sl-001"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Lod-Ai-001">
+                    <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Saf-Ar-001"/>
+            <constraints>
+                <constraint firstItem="Tbl-Vw-001" firstAttribute="top" secondItem="Roo-Vw-001" secondAttribute="top" id="C03-Sl-001"/>
+                <constraint firstItem="Tbl-Vw-001" firstAttribute="leading" secondItem="Roo-Vw-001" secondAttribute="leading" id="C04-Sl-001"/>
+                <constraint firstAttribute="trailing" secondItem="Tbl-Vw-001" secondAttribute="trailing" id="C05-Sl-001"/>
+                <constraint firstAttribute="bottom" secondItem="Tbl-Vw-001" secondAttribute="bottom" id="C06-Sl-001"/>
+                <constraint firstItem="Sts-Sv-001" firstAttribute="centerX" secondItem="Saf-Ar-001" secondAttribute="centerX" id="C07-Sl-001"/>
+                <constraint firstItem="Sts-Sv-001" firstAttribute="centerY" secondItem="Saf-Ar-001" secondAttribute="centerY" id="C08-Sl-001"/>
+                <constraint firstItem="Sts-Sv-001" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Saf-Ar-001" secondAttribute="leading" constant="32" id="C09-Sl-001"/>
+                <constraint firstItem="Saf-Ar-001" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Sts-Sv-001" secondAttribute="trailing" constant="32" id="C10-Sl-001"/>
+                <constraint firstItem="Lod-Ai-001" firstAttribute="centerX" secondItem="Saf-Ar-001" secondAttribute="centerX" id="C11-Sl-001"/>
+                <constraint firstItem="Lod-Ai-001" firstAttribute="centerY" secondItem="Saf-Ar-001" secondAttribute="centerY" id="C12-Sl-001"/>
+            </constraints>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </view>
+    </objects>
+</document>
