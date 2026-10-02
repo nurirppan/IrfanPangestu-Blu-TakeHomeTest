@@ -3,6 +3,8 @@ import Testing
 
 @MainActor
 struct SongListVMTests {
+    private let player = FakeMusicPlayerUseCase()
+
     @Test("Starts idle")
     func startsIdle() {
         let viewModel = makeViewModel(query: "", results: .success([]))
@@ -61,7 +63,7 @@ struct SongListVMTests {
 
     @Test("A new search cancels a retry still waiting, so its late answer can't replace the new list")
     func newSearchCancelsRetry() async throws {
-        let viewModel = SongListVM(searchUseCase: SlowRetrySearchSongsUseCase())
+        let viewModel = SongListVM(searchUseCase: SlowRetrySearchSongsUseCase(), playerUseCase: player)
         viewModel.query = "coldplay"
         await viewModel.search()
 
@@ -73,9 +75,21 @@ struct SongListVMTests {
         #expect(viewModel.state == .loaded([.sample(id: 2)]))
     }
 
+    @Test("Tapping a song plays it, with the list as the queue")
+    func playsTappedSong() async {
+        let songs = [SongModel.sample(id: 1), .sample(id: 2)]
+        let viewModel = makeViewModel(query: "coldplay", results: .success(songs))
+        await viewModel.search()
+
+        viewModel.didSelect(songs[1])
+
+        #expect(player.playedSongs == songs)
+        #expect(player.playedIndex == 1)
+    }
+
     private func makeViewModel(query: String, results: Result<[SongModel], AppErrorType>...) -> SongListVM {
         let searchUseCase = StubSearchSongsUseCase(results: results)
-        let viewModel = SongListVM(searchUseCase: searchUseCase)
+        let viewModel = SongListVM(searchUseCase: searchUseCase, playerUseCase: player)
         viewModel.query = query
         return viewModel
     }

@@ -8,11 +8,16 @@ final class SongListVM: ObservableObject, ErrorHandling {
     @Published private(set) var state = SongListStateType.idle
 
     private let searchUseCase: any SearchSongsUseCase
+    private let playerUseCase: any MusicPlayerUseCase
     private var searchTask: Task<Void, Never>?
     private var retryOperation: (@MainActor () async -> Void)?
 
-    init(searchUseCase: any SearchSongsUseCase = Container.shared.searchSongsUseCase()) {
+    init(
+        searchUseCase: any SearchSongsUseCase = Container.shared.searchSongsUseCase(),
+        playerUseCase: any MusicPlayerUseCase = Container.shared.musicPlayerUseCase()
+    ) {
         self.searchUseCase = searchUseCase
+        self.playerUseCase = playerUseCase
     }
 
     /// Called from the keyboard's Search button; a newer search cancels the one still running.
@@ -27,6 +32,14 @@ final class SongListVM: ObservableObject, ErrorHandling {
         replaceRunningSearch { [weak self] in
             await self?.retry()
         }
+    }
+
+    /// The tapped song plays, and the list on screen becomes the queue.
+    func didSelect(_ song: SongModel) {
+        guard case let .loaded(songs) = state, let index = songs.firstIndex(of: song) else {
+            return
+        }
+        playerUseCase.play(songs: songs, startAt: index)
     }
 
     /// Runs the operation that failed last, again.
