@@ -20,4 +20,10 @@ extension Container {
     var musicPlayerUseCase: Factory<any MusicPlayerUseCase> {
         self { MainActor.assumeIsolated { MusicPlayerUseCaseImpl(repository: self.playerRepository()) } }.singleton
     }
+
+    /// Logs a fault until the app's `autoRegister()` swaps in the real one. `.singleton`: the system has one
+    /// lock screen, and a second instance would answer its buttons twice.
+    var nowPlayingRepository: Factory<any NowPlayingRepository> {
+        self { MainActor.assumeIsolated { UnwiredNowPlayingRepository() } }.singleton
+    }
 }
