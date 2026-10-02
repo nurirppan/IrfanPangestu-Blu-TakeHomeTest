@@ -1,0 +1,23 @@
+included:
+  - IrfanPangestu-Blu-TakeHomeTest
+  - IrfanPangestu-Blu-TakeHomeTestTests
+
+opt_in_rules:
+  - closure_spacing
+  - empty_count
+  - explicit_init
+  - first_where
+  - sorted_imports
+  - toggle_bool
+
+line_length:
+  warning: 140
+  error: 180
+
+function_parameter_count:
+  warning: 6
+  error: 8
+
+identifier_name:
+  excluded:
+    - id
