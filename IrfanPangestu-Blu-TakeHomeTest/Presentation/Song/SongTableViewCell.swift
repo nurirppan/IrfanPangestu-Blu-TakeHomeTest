@@ -1,7 +1,7 @@
 import UIKit
 
-/// One row of the song list: artwork, title, artist, album, and a wave icon on the current song. The layout lives
-/// in SongTableViewCell.xib.
+/// One row of the song list: artwork, title, artist, album, and a wave icon on the current song that moves while
+/// it plays. The layout lives in SongTableViewCell.xib.
 final class SongTableViewCell: UITableViewCell {
     static let reuseIdentifier = "SongTableViewCell"
     static let nib = UINib(nibName: "SongTableViewCell", bundle: nil)
@@ -13,8 +13,9 @@ final class SongTableViewCell: UITableViewCell {
     @IBOutlet private weak var playingImageView: UIImageView!
 
     private var artworkTask: Task<Void, Never>?
+    private var isWaveMoving = false
 
-    /// The icon never changes, so it is set once.
+    /// Set once: replacing the image on every configure would stop the wave's symbol effect.
     override func awakeFromNib() {
         super.awakeFromNib()
         // NSObject declares this nonisolated, but nibs load on the main thread, which `assumeIsolated` checks.
@@ -28,6 +29,7 @@ final class SongTableViewCell: UITableViewCell {
         super.prepareForReuse()
         artworkTask?.cancel()
         artworkImageView.image = nil
+        moveWave(false)
     }
 
     func configure(with song: SongModel, isCurrent: Bool, isPlaying: Bool) {
@@ -41,7 +43,21 @@ final class SongTableViewCell: UITableViewCell {
         backgroundColor = isCurrent ? tintColor.withAlphaComponent(0.12) : nil
         let playback = isPlaying ? String(localized: "Now playing") : String(localized: "Paused")
         accessibilityValue = isCurrent ? playback : nil
+        moveWave(isCurrent && isPlaying)
         loadArtwork(from: song.artworkURL)
+    }
+
+    /// Symbol effects arrived in iOS 17, so on iOS 16 the wave stays still.
+    private func moveWave(_ isMoving: Bool) {
+        guard #available(iOS 17.0, *), isMoving != isWaveMoving else {
+            return
+        }
+        isWaveMoving = isMoving
+        if isMoving {
+            playingImageView.addSymbolEffect(.variableColor.iterative)
+        } else {
+            playingImageView.removeAllSymbolEffects()
+        }
     }
 
     private func loadArtwork(from url: URL?) {
