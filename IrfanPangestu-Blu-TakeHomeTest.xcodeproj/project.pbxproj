@@ -12,37 +12,37 @@
 			containerPortal = 77E18C48306F2F62009BFE81 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 77E18C4F306F2F62009BFE81;
-			remoteInfo = "IrfanPangestu Blu TakeHomeTest";
+			remoteInfo = "IrfanPangestu-Blu-TakeHomeTest";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		77E18C50306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IrfanPangestu Blu TakeHomeTest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		77E18C66306F2F63009BFE81 /* IrfanPangestu Blu TakeHomeTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IrfanPangestu Blu TakeHomeTestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		77E18C50306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IrfanPangestu-Blu-TakeHomeTest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		77E18C66306F2F63009BFE81 /* IrfanPangestu-Blu-TakeHomeTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IrfanPangestu-Blu-TakeHomeTestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		77E18C78306F2F63009BFE81 /* Exceptions for "IrfanPangestu Blu TakeHomeTest" folder in "IrfanPangestu Blu TakeHomeTest" target */ = {
+		77E18C78306F2F63009BFE81 /* Exceptions for "IrfanPangestu-Blu-TakeHomeTest" folder in "IrfanPangestu-Blu-TakeHomeTest" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 77E18C4F306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest */;
+			target = 77E18C4F306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		77E18C52306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest */ = {
+		77E18C52306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				77E18C78306F2F63009BFE81 /* Exceptions for "IrfanPangestu Blu TakeHomeTest" folder in "IrfanPangestu Blu TakeHomeTest" target */,
+				77E18C78306F2F63009BFE81 /* Exceptions for "IrfanPangestu-Blu-TakeHomeTest" folder in "IrfanPangestu-Blu-TakeHomeTest" target */,
 			);
-			path = "IrfanPangestu Blu TakeHomeTest";
+			path = "IrfanPangestu-Blu-TakeHomeTest";
 			sourceTree = "<group>";
 		};
-		77E18C69306F2F63009BFE81 /* IrfanPangestu Blu TakeHomeTestTests */ = {
+		77E18C69306F2F63009BFE81 /* IrfanPangestu-Blu-TakeHomeTestTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "IrfanPangestu Blu TakeHomeTestTests";
+			path = "IrfanPangestu-Blu-TakeHomeTestTests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -68,8 +68,8 @@
 		77E18C47306F2F62009BFE81 = {
 			isa = PBXGroup;
 			children = (
-				77E18C52306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest */,
-				77E18C69306F2F63009BFE81 /* IrfanPangestu Blu TakeHomeTestTests */,
+				77E18C52306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest */,
+				77E18C69306F2F63009BFE81 /* IrfanPangestu-Blu-TakeHomeTestTests */,
 				77E18C51306F2F62009BFE81 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,8 +77,8 @@
 		77E18C51306F2F62009BFE81 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				77E18C50306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest.app */,
-				77E18C66306F2F63009BFE81 /* IrfanPangestu Blu TakeHomeTestTests.xctest */,
+				77E18C50306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest.app */,
+				77E18C66306F2F63009BFE81 /* IrfanPangestu-Blu-TakeHomeTestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,9 +86,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		77E18C4F306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest */ = {
+		77E18C4F306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 77E18C79306F2F63009BFE81 /* Build configuration list for PBXNativeTarget "IrfanPangestu Blu TakeHomeTest" */;
+			buildConfigurationList = 77E18C79306F2F63009BFE81 /* Build configuration list for PBXNativeTarget "IrfanPangestu-Blu-TakeHomeTest" */;
 			buildPhases = (
 				77E18C4C306F2F62009BFE81 /* Sources */,
 				77E18C4D306F2F62009BFE81 /* Frameworks */,
@@ -99,18 +99,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				77E18C52306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest */,
+				77E18C52306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest */,
 			);
-			name = "IrfanPangestu Blu TakeHomeTest";
+			name = "IrfanPangestu-Blu-TakeHomeTest";
 			packageProductDependencies = (
 			);
-			productName = "IrfanPangestu Blu TakeHomeTest";
-			productReference = 77E18C50306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest.app */;
+			productName = "IrfanPangestu-Blu-TakeHomeTest";
+			productReference = 77E18C50306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest.app */;
 			productType = "com.apple.product-type.application";
 		};
-		77E18C65306F2F63009BFE81 /* IrfanPangestu Blu TakeHomeTestTests */ = {
+		77E18C65306F2F63009BFE81 /* IrfanPangestu-Blu-TakeHomeTestTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 77E18C7E306F2F63009BFE81 /* Build configuration list for PBXNativeTarget "IrfanPangestu Blu TakeHomeTestTests" */;
+			buildConfigurationList = 77E18C7E306F2F63009BFE81 /* Build configuration list for PBXNativeTarget "IrfanPangestu-Blu-TakeHomeTestTests" */;
 			buildPhases = (
 				77E18C62306F2F63009BFE81 /* Sources */,
 				77E18C63306F2F63009BFE81 /* Frameworks */,
@@ -122,13 +122,13 @@
 				77E18C68306F2F63009BFE81 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				77E18C69306F2F63009BFE81 /* IrfanPangestu Blu TakeHomeTestTests */,
+				77E18C69306F2F63009BFE81 /* IrfanPangestu-Blu-TakeHomeTestTests */,
 			);
-			name = "IrfanPangestu Blu TakeHomeTestTests";
+			name = "IrfanPangestu-Blu-TakeHomeTestTests";
 			packageProductDependencies = (
 			);
-			productName = "IrfanPangestu Blu TakeHomeTestTests";
-			productReference = 77E18C66306F2F63009BFE81 /* IrfanPangestu Blu TakeHomeTestTests.xctest */;
+			productName = "IrfanPangestu-Blu-TakeHomeTestTests";
+			productReference = 77E18C66306F2F63009BFE81 /* IrfanPangestu-Blu-TakeHomeTestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -150,7 +150,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 77E18C4B306F2F62009BFE81 /* Build configuration list for PBXProject "IrfanPangestu Blu TakeHomeTest" */;
+			buildConfigurationList = 77E18C4B306F2F62009BFE81 /* Build configuration list for PBXProject "IrfanPangestu-Blu-TakeHomeTest" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -164,8 +164,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				77E18C4F306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest */,
-				77E18C65306F2F63009BFE81 /* IrfanPangestu Blu TakeHomeTestTests */,
+				77E18C4F306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest */,
+				77E18C65306F2F63009BFE81 /* IrfanPangestu-Blu-TakeHomeTestTests */,
 			);
 		};
 /* End PBXProject section */
@@ -207,7 +207,7 @@
 /* Begin PBXTargetDependency section */
 		77E18C68306F2F63009BFE81 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 77E18C4F306F2F62009BFE81 /* IrfanPangestu Blu TakeHomeTest */;
+			target = 77E18C4F306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest */;
 			targetProxy = 77E18C67306F2F63009BFE81 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -222,7 +222,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HB29KH82GH;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "IrfanPangestu Blu TakeHomeTest/Info.plist";
+				INFOPLIST_FILE = "IrfanPangestu-Blu-TakeHomeTest/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -254,7 +254,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HB29KH82GH;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "IrfanPangestu Blu TakeHomeTest/Info.plist";
+				INFOPLIST_FILE = "IrfanPangestu-Blu-TakeHomeTest/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -416,7 +416,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IrfanPangestu Blu TakeHomeTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IrfanPangestu Blu TakeHomeTest";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IrfanPangestu-Blu-TakeHomeTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IrfanPangestu-Blu-TakeHomeTest";
 			};
 			name = Debug;
 		};
@@ -438,14 +438,14 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IrfanPangestu Blu TakeHomeTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IrfanPangestu Blu TakeHomeTest";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IrfanPangestu-Blu-TakeHomeTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IrfanPangestu-Blu-TakeHomeTest";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		77E18C4B306F2F62009BFE81 /* Build configuration list for PBXProject "IrfanPangestu Blu TakeHomeTest" */ = {
+		77E18C4B306F2F62009BFE81 /* Build configuration list for PBXProject "IrfanPangestu-Blu-TakeHomeTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				77E18C7C306F2F63009BFE81 /* Debug */,
@@ -454,7 +454,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		77E18C79306F2F63009BFE81 /* Build configuration list for PBXNativeTarget "IrfanPangestu Blu TakeHomeTest" */ = {
+		77E18C79306F2F63009BFE81 /* Build configuration list for PBXNativeTarget "IrfanPangestu-Blu-TakeHomeTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				77E18C7A306F2F63009BFE81 /* Debug */,
@@ -463,7 +463,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		77E18C7E306F2F63009BFE81 /* Build configuration list for PBXNativeTarget "IrfanPangestu Blu TakeHomeTestTests" */ = {
+		77E18C7E306F2F63009BFE81 /* Build configuration list for PBXNativeTarget "IrfanPangestu-Blu-TakeHomeTestTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				77E18C7F306F2F63009BFE81 /* Debug */,
