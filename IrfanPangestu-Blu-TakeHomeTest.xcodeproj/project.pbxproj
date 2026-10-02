@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		77E18C81306F3A10009BFE81 /* FactoryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 77E18C82306F3A10009BFE81 /* FactoryKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		77E18C67306F2F63009BFE81 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77E18C81306F3A10009BFE81 /* FactoryKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +108,7 @@
 			);
 			name = "IrfanPangestu-Blu-TakeHomeTest";
 			packageProductDependencies = (
+				77E18C82306F3A10009BFE81 /* FactoryKit */,
 			);
 			productName = "IrfanPangestu-Blu-TakeHomeTest";
 			productReference = 77E18C50306F2F62009BFE81 /* IrfanPangestu-Blu-TakeHomeTest.app */;
@@ -159,6 +165,9 @@
 			);
 			mainGroup = 77E18C47306F2F62009BFE81;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				77E18C83306F3A10009BFE81 /* XCRemoteSwiftPackageReference "Factory" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 77E18C51306F2F62009BFE81 /* Products */;
 			projectDirPath = "";
@@ -463,6 +472,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		77E18C83306F3A10009BFE81 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = exactVersion;
+				version = 3.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		77E18C82306F3A10009BFE81 /* FactoryKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 77E18C83306F3A10009BFE81 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = FactoryKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 77E18C48306F2F62009BFE81 /* Project object */;
 }
