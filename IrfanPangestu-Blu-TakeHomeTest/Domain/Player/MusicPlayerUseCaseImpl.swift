@@ -106,8 +106,25 @@ final class MusicPlayerUseCaseImpl: MusicPlayerUseCase {
                 $0.isPlaying = isPlaying
                 $0.isBuffering = isBuffering
             }
-        case .finished, .failed:
+        case .finished:
+            playNextOrStop()
+        case .failed:
             break
+        }
+    }
+
+    /// Autoplay. After the last song the player rests at its start, ready to play it again.
+    private func playNextOrStop() {
+        if let song = queue.next() {
+            start(song)
+            return
+        }
+        repository.pause()
+        repository.seek(to: 0)
+        update {
+            $0.isPlaying = false
+            $0.isBuffering = false
+            $0.position = 0
         }
     }
 

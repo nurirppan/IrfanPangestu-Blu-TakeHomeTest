@@ -98,6 +98,30 @@ struct MusicPlayerUseCaseTests {
         #expect(!useCase.state.isBuffering)
     }
 
+    @Test("A finished song starts the next one")
+    func autoplaysNextSong() {
+        useCase.play(songs: songs, startAt: 0)
+
+        repository.send(.finished)
+
+        #expect(useCase.state.currentSong == songs[1])
+        #expect(repository.playedURLs == [songs[0].previewURL, songs[1].previewURL])
+    }
+
+    @Test("The last song stops at its start when it finishes")
+    func stopsAfterLastSong() {
+        useCase.play(songs: songs, startAt: 2)
+        repository.send(.progress(position: 30, duration: 30))
+
+        repository.send(.finished)
+
+        #expect(useCase.state.currentSong == songs[2])
+        #expect(!useCase.state.isPlaying)
+        #expect(useCase.state.position == 0)
+        #expect(repository.pauseCount == 1)
+        #expect(repository.seekPositions == [0])
+    }
+
     @Test("Tapping the song that's playing pauses it instead of restarting")
     func togglesCurrentSong() {
         useCase.play(songs: songs, startAt: 1)
